@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}RECETAS | CREATE{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Registrar Nueva Receta</h1>
+    <form action="{{ url_for('receta.create') }}" method="POST" class="shadow p-4 bg-white rounded">
+        <div class="mb-3">
+            <label for="id_consulta" class="form-label">Consulta</label>
+            <select name="id_consulta" id="id_consulta" class="form-select" required>
+                <option value="" disabled selected>Selecciona una consulta</option>
+                {% for consulta in consultas %}
+                <option value="{{ consulta.id }}">{{ consulta.id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="medicamento" class="form-label">Medicamento</label>
+            <input type="text" class="form-control" id="medicamento" name="medicamento" required>
+        </div>
+        <div class="mb-3">
+            <label for="dosis" class="form-label">Dosis</label>
+            <input type="text" class="form-control" id="dosis" name="dosis" required>
+        </div>
+        <div class="mb-3">
+            <label for="indicaciones" class="form-label">Indicaciones</label>
+            <textarea class="form-control" id="indicaciones" name="indicaciones" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Registrar Receta</button>
+    </form>
+</div>
+{% endblock %}

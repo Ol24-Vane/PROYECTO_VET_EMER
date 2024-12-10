@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}RECEPCIONISTAS{% endblock %}
+
+{% block content %}
+
+<h1>Lista de Recepcionistas</h1>
+
+<a href="{{ url_for('recepcionistas.create') }}" class="btn btn-success mb-3">Nuevo Recepcionista</a>
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>CI</th>
+        <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Sexo</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Correo</th>
+        <th>Turno</th>
+        <th>Opciones</th>
+    </tr>
+    {% for item in recepcionistas %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.ci }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.ap_paterno }}</td>
+        <td>{{ item.ap_materno }}</td>
+        <td>{{ item.fecha_nacimiento }}</td>
+        <td>{{ item.sexo }}</td>
+        <td>{{ item.telefono }}</td>
+        <td>{{ item.direccion }}</td>
+        <td>{{ item.ciudad }}</td>
+        <td>{{ item.correo }}</td>
+        <td>{{ item.turno if item.turno }}</td>
+        <td>
+            <a href="{{ url_for('recepcionista.edit', id=item.id) }}" class="btn btn-warning">Editar</a>
+        </td>
+        <td>
+            <a href="{{ url_for('recepcionista.delete', id=item.id) }}" class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

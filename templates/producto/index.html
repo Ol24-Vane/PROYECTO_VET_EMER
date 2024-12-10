@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}PRODUCTOS{% endblock %}
+
+{% block content %}
+
+<h1>Lista de Productos</h1>
+
+<a href="{{ url_for('producto.create') }}" class="btn btn-success mb-3">Nuevo</a>
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fecha Adquirido</th>
+        <th>Fecha Vencimiento</th>
+        <th>Cantidad</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        <th>Recepcionista</th>
+        <th>Opciones</th>
+    </tr>
+    {% for item in productos %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.fecha_adquirido }}</td>
+        <td>{{ item.fecha_vencimiento }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>{{ item.marca }}</td>
+        <td>{{ item.precio }}</td>
+        <td>{{ item.recepcionista.nombre if item.recepcionista }}</td>
+        <td>
+            <a href="{{ url_for('producto.edit', id=item.id) }}" class="btn btn-warning">Editar</a>
+            <a href="{{ url_for('producto.delete', id=item.id) }}" class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

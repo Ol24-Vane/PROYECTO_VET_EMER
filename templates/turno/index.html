@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}TURNOS{% endblock %}
+
+{% block content %}
+
+<h1>Lista de Turnos</h1>
+
+<a href="{{ url_for('turno.create') }}" class="btn btn-success mb-3">Nuevo</a>
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Turno</th>
+        <th>Hora de Inicio</th>
+        <th>Hora Final</th>
+        <th>Opciones</th>
+    </tr>
+    {% for item in turnos %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.turno }}</td>
+        <td>{{ item.hora_inicio }}</td>
+        <td>{{ item.hora_final }}</td>
+        <td>
+            <a href="{{ url_for('turno.edit', id=item.id) }}" class="btn btn-warning">Editar</a>
+            <a href="{{ url_for('turno.delete', id=item.id) }}" class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

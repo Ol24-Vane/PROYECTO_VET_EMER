@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}CONSULTAS | CREATE{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Registrar Nueva Consulta</h1>
+    <form action="{{ url_for('consulta.create') }}" method="POST" class="shadow p-4 bg-white rounded">
+        <div class="mb-3">
+            <label for="id_paciente" class="form-label">Paciente</label>
+            <select name="id_paciente" id="id_paciente" class="form-select" required>
+                <option value="" disabled selected>Selecciona un paciente</option>
+                {% for paciente in pacientes %}
+                <option value="{{ paciente.id }}">{{ paciente.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="id_doctor" class="form-label">Doctor</label>
+            <select name="id_doctor" id="id_doctor" class="form-select" required>
+                <option value="" disabled selected>Selecciona un doctor</option>
+                {% for doctor in doctores %}
+                <option value="{{ doctor.id }}">{{ doctor.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" required>
+        </div>
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora</label>
+            <input type="time" class="form-control" id="hora" name="hora" required>
+        </div>
+        <div class="mb-3">
+            <label for="sintomas" class="form-label">Síntomas</label>
+            <textarea class="form-control" id="sintomas" name="sintomas" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="diagnostico" class="form-label">Diagnóstico</label>
+            <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Registrar Consulta</button>
+    </form>
+</div>
+{% endblock %}

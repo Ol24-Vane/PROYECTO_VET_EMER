@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}CONSULTAS | EDIT{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Editar Consulta</h1>
+    <form action="{{ url_for('consulta.edit', id=consulta.id) }}" method="POST" class="shadow p-4 bg-white rounded">
+        <div class="mb-3">
+            <label for="id_paciente" class="form-label">Paciente</label>
+            <select name="id_paciente" id="id_paciente" class="form-select" required>
+                {% for paciente in pacientes %}
+                <option value="{{ paciente.id }}" {% if consulta.id_paciente == paciente.id %}selected{% endif %}>
+                    {{ paciente.nombre }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="id_doctor" class="form-label">Doctor</label>
+            <select name="id_doctor" id="id_doctor" class="form-select" required>
+                {% for doctor in doctores %}
+                <option value="{{ doctor.id }}" {% if consulta.id_doctor == doctor.id %}selected{% endif %}>
+                    {{ doctor.nombre }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" value="{{ consulta.fecha }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora</label>
+            <input type="time" class="form-control" id="hora" name="hora" value="{{ consulta.hora }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="sintomas" class="form-label">Síntomas</label>
+            <textarea class="form-control" id="sintomas" name="sintomas" rows="3">{{ consulta.sintomas }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="diagnostico" class="form-label">Diagnóstico</label>
+            <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3">{{ consulta.diagnostico }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Actualizar Consulta</button>
+    </form>
+</div>
+{% endblock %}

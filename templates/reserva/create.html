@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}RESERVAS | CREATE{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Registrar Nueva Reserva</h1>
+    <form action="{{ url_for('reserva.create') }}" method="POST" class="shadow p-4 bg-white rounded">
+        <div class="mb-3">
+            <label for="id_responsable" class="form-label">Responsable</label>
+            <select name="id_responsable" id="id_responsable" class="form-select" required>
+                <option value="" disabled selected>Selecciona un responsable</option>
+                {% for responsable in responsables %}
+                <option value="{{ responsable.id }}">{{ responsable.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="id_doctor" class="form-label">Doctor</label>
+            <select name="id_doctor" id="id_doctor" class="form-select" required>
+                <option value="" disabled selected>Selecciona un doctor</option>
+                {% for doctor in doctores %}
+                <option value="{{ doctor.id }}">{{ doctor.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" required>
+        </div>
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora</label>
+            <input type="time" class="form-control" id="hora" name="hora" required>
+        </div>
+        <div class="mb-3">
+            <label for="observacion" class="form-label">Observación</label>
+            <textarea class="form-control" id="observacion" name="observacion" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Registrar Reserva</button>
+    </form>
+</div>
+{% endblock %}

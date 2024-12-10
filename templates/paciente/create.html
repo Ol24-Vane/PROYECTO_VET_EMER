@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}PACIENTES | CREATE{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Registrar Nuevo Paciente</h1>
+    <form action="{{ url_for('paciente.create') }}" method="POST" class="shadow p-4 bg-white rounded">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="raza" class="form-label">Raza</label>
+            <input type="text" class="form-control" id="raza" name="raza" required>
+        </div>
+        <div class="mb-3">
+            <label for="edad" class="form-label">Edad</label>
+            <input type="number" class="form-control" id="edad" name="edad" required>
+        </div>
+        <div class="mb-3">
+            <label for="color" class="form-label">Color</label>
+            <input type="text" class="form-control" id="color" name="color">
+        </div>
+        <div class="mb-3">
+            <label for="rasgos" class="form-label">Rasgos</label>
+            <textarea class="form-control" id="rasgos" name="rasgos" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="id_responsable" class="form-label">Responsable</label>
+            <select name="id_responsable" id="id_responsable" class="form-select" required>
+                <option value="" disabled selected>Selecciona un responsable</option>
+                {% for responsable in responsables %}
+                <option value="{{ responsable.id }}">{{ responsable.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Registrar Paciente</button>
+    </form>
+</div>
+{% endblock %}
